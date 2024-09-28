@@ -1,8 +1,9 @@
 {
-  "name": "@jesusgaspar/nest-sqs-transport-lib",
+  "name": "nest-sqs-transport-lib",
   "version": "1.0.0",
   "description": "New Transport for nest microservice",
   "author": "JgasparDevops https://github.com/JgasparDevops",
+  "private": true,
   "license": "MIT",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
