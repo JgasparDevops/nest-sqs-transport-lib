@@ -1,4 +1,10 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
+  "compilerOptions": {
+    "outDir": "./dist",        // La carpeta donde se generarán los archivos compilados
+    "declaration": true,       // Para generar los archivos .d.ts
+    "declarationMap": true,
+    "sourceMap": true
+  },
+  "include": ["src/**/*"]
 }

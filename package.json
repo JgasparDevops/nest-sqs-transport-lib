@@ -1,12 +1,19 @@
 {
   "name": "@jesusgaspar/nest-sqs-transport-lib",
-  "version": "1.0.0",
+  "version": "1.0.9",
   "description": "New Transport for nest microservice",
   "author": "JgasparDevops https://github.com/JgasparDevops",
   "license": "MIT",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -19,7 +26,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@nestjs/common": "^10.4.4",
