@@ -1,6 +1,6 @@
 {
   "name": "@jesusgaspar/nest-sqs-transport-lib",
-  "version": "1.0.12",
+  "version": "1.0.14",
   "description": "New Transport for nest microservice",
   "author": "JgasparDevops https://github.com/JgasparDevops",
   "license": "MIT",
@@ -30,11 +30,11 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
+    "@aws-sdk/client-sqs": "^3.658.1",
     "@nestjs/common": "^10.4.4",
     "@nestjs/core": "^10.0.0",
     "@nestjs/microservices": "^10.4.4",
     "@nestjs/platform-express": "^10.0.0",
-    "aws-sdk": "^2.1691.0",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
   },

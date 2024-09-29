@@ -1,16 +1,16 @@
 // sqs-client.ts
 import { ClientProxy, ReadPacket, WritePacket } from '@nestjs/microservices';
-import * as AWS from 'aws-sdk';
+import { SQSClient, SendMessageCommand } from '@aws-sdk/client-sqs';
 import { Logger } from '@nestjs/common';
 
 export class AWSSQSPubSubClient extends ClientProxy {
-  private sqs: AWS.SQS;
+  private sqs: SQSClient;
   private readonly queueUrl: string;
   private logger = new Logger('SqsClient');
 
   constructor(queueUrl: string, region: string) {
     super();
-    this.sqs = new AWS.SQS({ region });
+    this.sqs = new SQSClient({ region });
     this.queueUrl = queueUrl;
   }
 
@@ -27,13 +27,13 @@ export class AWSSQSPubSubClient extends ClientProxy {
   async dispatchEvent(packet: ReadPacket<any>): Promise<any> {
     const { pattern, data } = packet;
 
-    const params = {
+    const command = new SendMessageCommand({
       QueueUrl: this.queueUrl,
       MessageBody: JSON.stringify({ pattern, data }),
-    };
+    });
 
     try {
-      await this.sqs.sendMessage(params).promise();
+      await this.sqs.send(command);
       console.log(`Mensaje enviado con patrón: ${pattern}`);
     } catch (error) {
       console.error(`Error al enviar el mensaje: ${error.message}`);
