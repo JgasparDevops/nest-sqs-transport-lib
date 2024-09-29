@@ -40,11 +40,8 @@ export class AWSSQSPubSubServer
       if (response.Messages && response.Messages.length > 0) {
         for (const message of response.Messages) {
           const parsedMessage = JSON.parse(message.Body);
-          console.log('message proccesing:', message);
 
           this.handleMessage(parsedMessage);
-
-          console.log('message end successfull:', message);
 
           await this.sqs
             .deleteMessage({
@@ -70,7 +67,7 @@ export class AWSSQSPubSubServer
           console.log(`Mensaje procesado con éxito: ${message.pattern}`);
         })
         .catch((error) => {
-          console.error(`Error al procesar el mensaje: ${error.message}`);
+          console.error(`Error al procesar el mensaje: ${error}`);
         });
     } else {
       console.warn(`No handler found for pattern: ${message.pattern}`);
